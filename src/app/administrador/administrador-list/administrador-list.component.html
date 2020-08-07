@@ -45,11 +45,15 @@
         </ng-container>
 
         <ng-container matColumnDef="acoes">
-          <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
           <mat-cell *matCellDef="let element">
             <div class="acoes">
-              <button mat-raised-button color="accent" (click)="editar(element.id)">Editar</button>
-              <button mat-raised-button color="warn" (click)="excluir(element.id)">Excluir</button>
+              <button mat-icon-button color="accent" (click)="editar(element.id)">
+                <mat-icon aria-label="Edit">edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="excluir(element.id)">
+                <mat-icon aria-label="Delete">delete</mat-icon>
+              </button>
             </div>
           </mat-cell>
         </ng-container>
