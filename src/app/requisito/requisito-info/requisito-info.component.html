@@ -1,0 +1,66 @@
+<h1>Requisito 01</h1>
+
+<button mat-raised-button color="warn" class="voltar" [routerLink]="['/backlog']">Voltar</button>
+
+<mat-card>
+
+  <div class="col">
+    <mat-form-field>
+      <mat-label>Requisito 01</mat-label>
+      <input disabled matInput>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>User Story</mat-label>
+      <mat-select disabled>
+        <mat-option value="option">User Story</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <br>
+    <h3>Observações</h3>
+    <mat-form-field>
+      <mat-label>Observação do caso de requisito 01</mat-label>
+      <input disabled matInput>
+    </mat-form-field>
+  </div>
+
+  <div class="col">
+    <h2>User Story</h2>
+
+    Como
+    <mat-form-field class="input-user-story">
+      <mat-label>Ator</mat-label>
+      <mat-select disabled>
+        <mat-option value="option">User Story</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="input-user-story">
+      <mat-label>Ação</mat-label>
+      <mat-select disabled>
+        <mat-option value="option">User Story</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field>
+      <mat-label>Descrição da ação</mat-label>
+      <input disabled matInput>
+    </mat-form-field>
+    <br>
+    Para que seja possível
+    <br>
+    <mat-form-field>
+      <mat-label>Descrição da funcionalidade</mat-label>
+      <input disabled matInput>
+    </mat-form-field>
+
+  </div>
+
+</mat-card>
+
+<div class="actions">
+  <button mat-raised-button color="warn" [routerLink]="['/backlog']">Editar</button>
+  <button mat-raised-button color="primary" [routerLink]="['/backlog']">Excluir</button>
+</div>

@@ -1,0 +1,29 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.col {
+  flex: 1;
+}
+
+mat-form-field {
+  min-width: 300px;
+  width: 97%;
+}
+
+.habilidades {
+  width: 97%;
+  max-height: 400px;
+}
+
+.actions {
+  margin-top: 20px;
+}
+
+.actions button {
+  margin-right: 20px;
+}
+

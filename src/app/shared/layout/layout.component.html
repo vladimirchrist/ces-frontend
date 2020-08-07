@@ -1,0 +1,109 @@
+<div class="navigation" [class.is-mobile]="mobileQuery.matches">
+
+  <mat-toolbar class="toolbar" color="primary">
+
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span>Projeto 01</span>
+
+    <span class="toolbar-spacer"></span>
+
+    <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
+      <mat-icon matBadge="" matBadgeColor="accent">notifications</mat-icon>
+    </button>
+    <mat-menu #notificationMenu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
+      <a mat-menu-item>
+        <span>Você tem uma nova tarefa</span>
+      </a>
+      <a mat-menu-item>
+        <span>Você tem uma nova mensagem</span>
+      </a>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="userMenu">
+      <mat-icon>person</mat-icon>
+      <span>
+        Jeremias
+      </span>
+    </button>
+    <mat-menu #userMenu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
+      <a mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>Conta</span>
+      </a>
+      <a mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Log out</span>
+      </a>
+    </mat-menu>
+
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [opened]="!mobileQuery.matches" [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list>
+        <h3 mat-subheader>Membro da Equipe</h3>
+        <a mat-list-item [routerLink]="['/backlog']" routerLinkActive="active">
+          <mat-icon mat-list-icon>
+            table_chart
+          </mat-icon>
+          <p mat-line> Backlog </p>
+        </a>
+        <a mat-list-item [routerLink]="['/sprints']" routerLinkActive="active">
+          <mat-icon mat-list-icon>
+            rotate_right
+          </mat-icon>
+          <p mat-line> Sprints </p>
+        </a>
+        <a mat-list-item [routerLink]="['/fluxo-trabalho']" routerLinkActive="active">
+          <mat-icon mat-list-icon>
+            analytics
+          </mat-icon>
+          <p mat-line> Fluxo de Trabalho </p>
+        </a>
+
+        <h3 mat-subheader>Administrador</h3>
+        <a mat-list-item [routerLink]="['/administradores']" routerLinkActive="active">
+          <mat-icon mat-list-icon>
+            supervisor_account
+          </mat-icon>
+          <p mat-line> Administradores </p>
+        </a>
+        <a mat-list-item [routerLink]="['/usuarios']" routerLinkActive="active">
+          <mat-icon mat-list-icon>
+            people
+          </mat-icon>
+          <p mat-line> Usuários </p>
+        </a>
+
+        <!--
+        <a id="push-bottom" mat-list-item>
+          <mat-icon mat-list-icon>
+            bug_report
+          </mat-icon>
+          <p mat-line> Reportar Problema </p>
+        </a>
+        -->
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+      <div class="progress-bar-container">
+        <mat-progress-bar color="accent" mode="indeterminate" *ngIf="spinnerService.visibility | async">
+        </mat-progress-bar>
+        <mat-spinner class="spinner" [diameter]="50" *ngIf="showSpinner"></mat-spinner>
+      </div>
+
+      <div class="container">
+        <router-outlet></router-outlet>
+      </div>
+
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+</div>

@@ -1,0 +1,76 @@
+<mat-card>
+
+  <mat-card-title>
+    <h1>Usuários</h1>
+  </mat-card-title>
+
+  <mat-card-content>
+
+    <div class="add-search">
+      <div>
+        <button mat-raised-button color="primary" [routerLink]="['/usuarios/novo']">Novo Usuário</button>
+      </div>
+
+      <mat-form-field class="search">
+        <mat-label>Pesquisar</mat-label>
+        <input matInput placeholder="nome">
+      </mat-form-field>
+    </div>
+
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+      <ng-container matColumnDef="position">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="nome">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.nome}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Login </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="ativo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Ativo </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.ativo}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="numProjetosCriados">
+        <mat-header-cell *matHeaderCellDef> Projetos criados </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.numProjetosCriados}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="numProjetosEnvolvidos">
+        <mat-header-cell *matHeaderCellDef> Projetos envolvidos </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.numProjetosEnvolvidos}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div class="acoes">
+            <button mat-raised-button color="accent" [routerLink]="['/criarUsuario']">Editar</button>
+            <button mat-raised-button color="warn">Excluir</button>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+  </mat-card-content>
+
+</mat-card>

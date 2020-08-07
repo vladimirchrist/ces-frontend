@@ -1,0 +1,29 @@
+<div class="container">
+  <mat-card class="login-card">
+    <mat-toolbar class="title">Login</mat-toolbar>
+
+    <mat-card-content>
+      <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <mat-label for="username">Usuário</mat-label>
+          <input id="username" formControlName="username" matInput placeholder="Digite seu usuário" name="username">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label for="password">Senha</mat-label>
+          <input formControlName="password" id="password" matInput type="password" placeholder="Digite sua senha"
+            name="password">
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions class="actions">
+      <button class="btn" mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+      <div class="register">
+        <span>Nao possui uma conta?</span>
+        <a [routerLink]="['/register']" routerLinkActive="router-link-active" mat-button color="primary">Criar</a>
+      </div>
+    </mat-card-actions>
+
+  </mat-card>
+</div>

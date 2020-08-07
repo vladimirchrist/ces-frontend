@@ -1,0 +1,197 @@
+<div class="title">
+  <button mat-icon-button aria-label="Voltar" [routerLink]="['/sprints']">
+    <mat-icon>arrow_back</mat-icon> Nova Sprint
+  </button>
+</div>
+<br>
+<button mat-raised-button color="primary" (click)="cadastrar()">Criar</button>
+
+<div class="search">
+  <div class="search-item">
+    Filtrar:
+
+    <mat-form-field>
+      <mat-label>Nome</mat-label>
+      <input matInput>
+    </mat-form-field>
+  </div>
+
+  <div class="search-item">
+    Ordenar por:
+    <mat-form-field>
+      <mat-label>Escolha uma opção</mat-label>
+      <mat-select>
+        <mat-option value="prioridade">Prioridade</mat-option>
+        <mat-option value="idade">Idade</mat-option>
+        <mat-option value="estimativa">Estimativa</mat-option>
+        <mat-option value="entrega">Entrega</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+</div>
+
+<mat-card>
+  <mat-form-field class="col">
+    <mat-label>Data de início</mat-label>
+    <input matInput [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="col">
+    <mat-label>Data de entrega</mat-label>
+    <input matInput [matDatepicker]="picker2">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="col">
+    <mat-label>Valor entregue ao negócio</mat-label>
+    <input matInput placeholder="" value="">
+  </mat-form-field>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Requisito 01</mat-card-title>
+  </mat-card-header>
+  <mat-card-content style="margin-left: 15px" class="card">
+    <div class="col">
+      <p>
+        Prioridade: 90
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Idade: 4
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Estimativa: 8
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Autor: Jeremias
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Data Entrega: 09/09/2020
+      </p>
+    </div>
+    <div class="action">
+      <mat-checkbox></mat-checkbox>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Requisito 01</mat-card-title>
+  </mat-card-header>
+  <mat-card-content style="margin-left: 15px" class="card">
+    <div class="col">
+      <p>
+        Prioridade: 90
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Idade: 4
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Estimativa: 8
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Autor: Jeremias
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Data Entrega: 09/09/2020
+      </p>
+    </div>
+    <div class="action">
+      <mat-checkbox></mat-checkbox>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Requisito 01</mat-card-title>
+  </mat-card-header>
+  <mat-card-content style="margin-left: 15px" class="card">
+    <div class="col">
+      <p>
+        Prioridade: 90
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Idade: 4
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Estimativa: 8
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Autor: Jeremias
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Data Entrega: 09/09/2020
+      </p>
+    </div>
+    <div class="action">
+      <mat-checkbox></mat-checkbox>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Requisito 01</mat-card-title>
+  </mat-card-header>
+  <mat-card-content style="margin-left: 15px" class="card">
+    <div class="col">
+      <p>
+        Prioridade: 90
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Idade: 4
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Estimativa: 8
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Autor: Jeremias
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Data Entrega: 09/09/2020
+      </p>
+    </div>
+    <div class="action">
+      <mat-checkbox></mat-checkbox>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,54 @@
+<div class="title">
+  <button mat-icon-button aria-label="Voltar" [routerLink]="['/usuarios']">
+    <mat-icon>arrow_back</mat-icon> Novo Usuário
+  </button>
+</div>
+<br>
+<mat-card>
+  <div class="row">
+
+    <div class="col">
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Login</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+
+    <div class="col">
+      <mat-form-field>
+        <mat-label>Senha</mat-label>
+        <input type="password" matInput>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Confirmar senha</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <br>
+      <mat-checkbox>Ativo</mat-checkbox>
+    </div>
+  </div>
+
+  <div class="row">
+    <mat-form-field class="habilidades">
+      <mat-label>Habilidades</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+  </div>
+
+</mat-card>
+
+<div class="actions">
+  <button mat-raised-button color="warn" [routerLink]="['/usuarios']">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="cadastrar()">Criar</button>
+</div>

@@ -1,0 +1,68 @@
+<div>
+
+  <mat-card>
+
+    <mat-card-title>
+      <h1>Administradores</h1>
+    </mat-card-title>
+
+    <mat-card-content>
+
+      <div class="add-search">
+        <div>
+          <button mat-raised-button color="primary" [routerLink]="['/administradores/novo']">Novo Administrador</button>
+        </div>
+
+        <form [formGroup]="search">
+          <mat-form-field class="search">
+            <mat-label>Pesquisar</mat-label>
+            <input matInput placeholder="nome" formControlName="nome">
+          </mat-form-field>
+        </form>
+      </div>
+
+      <mat-table [dataSource]="data" class="mat-elevation-z8" matSort matSortActive="created" matSortDisableClear
+        matSortDirection="desc">
+
+        <ng-container matColumnDef="position">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
+          <mat-cell *matCellDef="let i = index"> {{(i+1) + this.paginator.pageIndex*10}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="nome">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.nome}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="username">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Login </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ativo">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Ativo </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.enabled? "Sim" : "Não"}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="acoes">
+          <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <div class="acoes">
+              <button mat-raised-button color="accent" (click)="editar(element.id)">Editar</button>
+              <button mat-raised-button color="warn" (click)="excluir(element.id)">Excluir</button>
+            </div>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      </mat-table>
+
+      <mat-paginator [length]="resultsLength" [pageSize]="10"></mat-paginator>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>

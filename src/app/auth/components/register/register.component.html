@@ -1,0 +1,86 @@
+<div class="container">
+  <mat-card class="login-card">
+    <mat-toolbar class="title">Cadastro</mat-toolbar>
+
+    <mat-card-content>
+      <form
+        class="login-form"
+        (ngSubmit)="onSubmit()"
+      >
+        <mat-form-field>
+          <mat-label for="email">Email</mat-label>
+          <input
+            required
+            email
+            type="email"
+            id="email"
+            formControlName="email"
+            matInput
+            placeholder="Digite seu email"
+          />
+          <mat-error *ngIf="email.invalid">Email inválido</mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label for="username">Nome de usuário</mat-label>
+          <input
+            required
+            id="username"
+            formControlName="username"
+            matInput
+            placeholder="Digite seu usuário"
+          />
+          <mat-error *ngIf="username.invalid">Username inválido</mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label for="password">Senha</mat-label>
+          <input
+            required
+            formControlName="password"
+            id="password"
+            matInput
+            type="password"
+            placeholder="Digite sua senha"
+          />
+          <mat-error *ngIf="password.invalid">Senha inválida</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label for="passwordConfirmation">Confirmaçao de senha</mat-label>
+          <input
+            required
+            formControlName="passwordConfirmation"
+            id="passwordConfirmation"
+            matInput
+            type="password"
+            placeholder="Digite sua senha"
+          />
+        </mat-form-field>
+
+        <button
+          class="btn"
+          type="submit"
+          mat-raised-button
+          color="primary"
+          [disabled]="registerForm.invalid"
+        >
+          Cadastrar
+        </button>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions class="actions">
+      <div>
+        <span>Já possui uma conta?</span>
+        <a
+          [routerLink]="['/login']"
+          routerLinkActive="router-link-active"
+          mat-button
+          color="primary"
+          >Entrar</a
+        >
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<!-- <app-loading *ngIf="isLoading"></app-loading> -->

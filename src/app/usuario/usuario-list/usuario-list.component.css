@@ -1,0 +1,22 @@
+mat-card-content {
+  margin-top: 20px;
+}
+
+.add-search {
+  display:flex;
+  flex-wrap: nowrap;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.search {
+  width: 400px;
+}
+
+table {
+  width: 100%;
+}
+
+.acoes button {
+  margin: 0 10px;
+}

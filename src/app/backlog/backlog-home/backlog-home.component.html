@@ -1,0 +1,94 @@
+<h1 class="mat-headline">Backlog</h1>
+
+<div class="buttons">
+  <button mat-raised-button color="primary" [routerLink]="['/sprints']">Sprints</button>
+
+  <button mat-raised-button color="primary" [routerLink]="['/criarRequisito']">Novo Requisito</button>
+</div>
+
+<div class="actions">
+
+  <form [formGroup]="filtrosListagem">
+    <div class="actions-item search">
+      Filtrar:
+
+      <mat-form-field class="search-item">
+        <mat-label>Estado</mat-label>
+        <mat-select formControlName="estado">
+          <mat-option value="verificado">Verificado</mat-option>
+          <mat-option value="andamento">Em andamento</mat-option>
+          <mat-option value="concluido">Concluído</mat-option>
+          <mat-option value="entregue">Entregue</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="search-item">
+        <mat-label>Sprint</mat-label>
+        <mat-select formControlName="sprint">
+          <mat-option value="0">Todas</mat-option>
+          <mat-option value="01">Sprint 1</mat-option>
+          <mat-option value="02">Sprint 2</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="search-item">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="nome">
+      </mat-form-field>
+    </div>
+
+  </form>
+
+  <div class="actions-item">
+    Ordenar por:
+    <mat-form-field class="search-item">
+      <mat-label>Escolha uma opção</mat-label>
+      <mat-select>
+        <mat-option value="prioridade">Prioridade</mat-option>
+        <mat-option value="idade">Idade</mat-option>
+        <mat-option value="estimativa">Estimativa</mat-option>
+        <mat-option value="entrega">Entrega</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+</div>
+
+<mat-card (click)="openRequisitoDetails()" *ngFor="let requisito of requisitos">
+  <mat-card-header>
+    <mat-card-title>
+      {{ requisito.requisito.nome }}
+      <span class="subtitle"> - Sprint {{ requisito.sprint.numeroSprint }}</span>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content style="margin-left: 15px" class="card">
+    <div class="col">
+      <p>
+        Prioridade: {{ requisito.prioridade }}
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Idade: {{ requisito.requisito.idade }}
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Estimativa: {{ requisito.estimativa }}
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Autor: Jeremias
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Estado: Verificado
+      </p>
+    </div>
+    <div class="col action">
+      <button mat-raised-button color="warn">Anexos</button>
+    </div>
+  </mat-card-content>
+</mat-card>

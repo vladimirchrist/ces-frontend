@@ -1,0 +1,91 @@
+<div class="title">
+  <button mat-icon-button aria-label="Voltar" [routerLink]="['/sprints']">
+    <mat-icon>arrow_back</mat-icon> Sprint 03
+  </button>
+  <div class="acoes">
+    <button mat-icon-button aria-label="Editar" [routerLink]="['/criarSprint']">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="Deletar" [routerLink]="['/sprints']">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>
+<br>
+
+<div class="actions">
+  <button mat-raised-button color="primary" (click)="iniciarSprint()">Iniciar Sprint</button>
+</div>
+
+<mat-card class="info">
+  <span>Data início: 01/07/2020</span>
+  <span>Data entrega: 15/07/2020</span>
+  <span>Estado: Entregue</span>
+  <span>Valor entregue ao negócio: blablablablablabla</span>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Requisito 01</mat-card-title>
+  </mat-card-header>
+  <mat-card-content style="margin-left: 15px" class="card">
+    <div class="col">
+      <p>
+        Prioridade: 90
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Idade: 4
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Estimativa: 8
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Autor: Jeremias
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Data Entrega: 09/09/2020
+      </p>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Requisito 01</mat-card-title>
+  </mat-card-header>
+  <mat-card-content style="margin-left: 15px" class="card">
+    <div class="col">
+      <p>
+        Prioridade: 90
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Idade: 4
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Estimativa: 8
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Autor: Jeremias
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        Data Entrega: 09/09/2020
+      </p>
+    </div>
+  </mat-card-content>
+</mat-card>
