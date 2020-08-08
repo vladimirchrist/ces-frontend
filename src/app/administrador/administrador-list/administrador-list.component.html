@@ -21,11 +21,11 @@
         </form>
       </div>
 
-      <mat-table [dataSource]="data" class="mat-elevation-z8" matSort matSortActive="created" matSortDisableClear
+      <mat-table  class="mat-elevation-z8" matSort matSortActive="created" matSortDisableClear
         matSortDirection="desc">
 
         <ng-container matColumnDef="position">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
           <mat-cell *matCellDef="let i = index"> {{(i+1) + this.paginator.pageIndex*10}} </mat-cell>
         </ng-container>
 
@@ -63,7 +63,11 @@
 
       </mat-table>
 
-      <mat-paginator [length]="resultsLength" [pageSize]="10"></mat-paginator>
+      <!--<mat-paginator [length]="resultsLength" [pageSize]="10"></mat-paginator>-->
+
+      <mat-paginator #paginator [length]="dataSource?.data.value.length" [pageIndex]="0" [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 50]">
+      </mat-paginator>
 
     </mat-card-content>
 

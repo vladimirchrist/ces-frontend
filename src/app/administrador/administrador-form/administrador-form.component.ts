@@ -19,7 +19,7 @@ export class AdministradorFormComponent implements OnInit {
     nome: ['', Validators.required],
     username: ['', Validators.required],
     password: ['', Validators.required],
-    enabled: ['', Validators.required]
+    enabled: ['']
   })
 
   hide = true
