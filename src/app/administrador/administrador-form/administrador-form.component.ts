@@ -15,6 +15,8 @@ import { Administrador } from '../../shared/models/administrador';
 })
 export class AdministradorFormComponent implements OnInit {
 
+  editarAdministrador = false
+
   administradorForm = this.fb.group({
     nome: ['', Validators.required],
     username: ['', Validators.required],
@@ -34,6 +36,7 @@ export class AdministradorFormComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id'];
 
     if (this.id) {
+      this.editarAdministrador = true;
       this.titleService.setTitle('Atualizar Administrador');
       this.administradorService.get(this.id)
         .subscribe((administrador: Administrador) => this.updateAdministrador(administrador));
@@ -84,7 +87,7 @@ export class AdministradorFormComponent implements OnInit {
     this.administradorForm.patchValue({
       nome: administrador.nome,
       username: administrador.username,
-      password: administrador.password,
+      //password: administrador.password,
       enabled: administrador.enabled
     })
   }

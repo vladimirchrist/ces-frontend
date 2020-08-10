@@ -1,4 +1,4 @@
-<h1>Cadastrar Administrador</h1>
+<h1>{{ editarAdministrador ? 'Editar Administrador' : 'Cadastrar Administrador' }}</h1>
 <br>
 <form [formGroup]="administradorForm" (ngSubmit)="onSubmit()">
   <mat-card>
@@ -16,12 +16,14 @@
       </div>
 
       <div class="col">
-        <mat-form-field>
-          <mat-label>Senha</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </mat-form-field>
-        <br><br>
+        <div [hidden]="editarAdministrador">
+          <mat-form-field> 
+            <mat-label>Senha</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+        </div>
+        <br>
         <mat-checkbox formControlName="enabled">Ativo</mat-checkbox>
       </div>
     </div>
@@ -29,6 +31,6 @@
 
   <div class="actions">
     <button mat-raised-button color="warn" [routerLink]="['/administradores']">Cancelar</button>
-    <button mat-raised-button color="primary" type="submit" [disabled]="!administradorForm.valid">Criar</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!administradorForm.valid&&!editarAdministrador">Criar</button>
   </div>
 </form>
