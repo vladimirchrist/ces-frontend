@@ -3,23 +3,18 @@
     <mat-toolbar class="title">Cadastro</mat-toolbar>
 
     <mat-card-content>
-      <form
-        class="login-form"
-        (ngSubmit)="onSubmit()"
-      >
-        <mat-form-field>
-          <mat-label for="email">Email</mat-label>
-          <input
-            required
-            email
-            type="email"
-            id="email"
-            formControlName="email"
-            matInput
-            placeholder="Digite seu email"
-          />
-          <mat-error *ngIf="email.invalid">Email inválido</mat-error>
-        </mat-form-field>
+      <form class="login-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label for="nome">Nome</mat-label>
+        <input
+          required
+          id="nome"
+          formControlName="nome"
+          matInput
+          placeholder="Digite seu nome"
+        />
+        <mat-error *ngIf="nome.invalid">Nome inválido</mat-error>
+      </mat-form-field>
         <br />
         <mat-form-field>
           <mat-label for="username">Nome de usuário</mat-label>

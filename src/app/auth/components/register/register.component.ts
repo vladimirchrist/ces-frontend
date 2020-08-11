@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { User } from '../../user.model';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +30,8 @@ export class RegisterComponent implements OnInit {
 
   createForm() {
     this.registerForm = this.fb.group({
-      email: '',
+      //email: '',
+      nome: '',
       username: '',
       password: '',
       passwordConfirmation: ''
@@ -55,16 +57,16 @@ export class RegisterComponent implements OnInit {
         }
       );
     } else {
-      this.notificationService.warn('A senha de confirmaçao nao confere!');
+      this.notificationService.error('A senha de confirmaçao nao confere!');
       this.registerForm.get('password').setValue('');
       this.registerForm.get('passwordConfirmation').setValue('');
     }
   }
-
+/*
   get email() {
     return this.registerForm.get('email').value;
   }
-
+*/
   get username() {
     return this.registerForm.get('username').value;
   }
@@ -77,11 +79,17 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('passwordConfirmation').value;
   }
 
+  get nome() {
+    return this.registerForm.get('nome').value;
+  }
+
   getUser(): User {
     return {
-      email: this.email,
+      nome: this.nome,
+      //email: this.email,
       username: this.username,
       password: this.password,
+      enabled: true
     };
   }
 

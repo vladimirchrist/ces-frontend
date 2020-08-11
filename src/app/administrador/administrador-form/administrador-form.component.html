@@ -31,6 +31,6 @@
 
   <div class="actions">
     <button mat-raised-button color="warn" [routerLink]="['/administradores']">Cancelar</button>
-    <button mat-raised-button color="primary" type="submit" [disabled]="!administradorForm.valid&&!editarAdministrador">Criar</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!administradorForm.valid&&!editarAdministrador">{{ editarAdministrador ? 'Editar' : 'Criar' }}</button>
   </div>
 </form>

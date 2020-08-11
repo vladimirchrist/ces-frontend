@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 
 
 const routes: Routes = [
@@ -9,6 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'backlog',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./backlog/backlog.module').then(m => m.BacklogModule)
   },
   {

@@ -38,18 +38,19 @@ export class AuthenticationService {
         this.saveUser(u);
         this.saveTokens(u.authenticationToken, u.refreshToken);
         this.saveUserId(u.id);
-
         this.userSubject.next(u);
         return u;
       }));
   }
 
   register(user: User): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/auth/signup`, {
+    return this.http.post(`${environment.apiUrl}/user/usuarios`, {
+      nome: user.nome,
       username: user.username,
-      email: user.email,
-      password: user.password,
-      role: ['user']
+      enabled: user.enabled,
+      //email: user.email,
+      password: user.password
+      //role: ['user']
     }, httpOptions);
   }
 
@@ -100,6 +101,5 @@ export class AuthenticationService {
   public get userValue(): User {
     return this.userSubject.value;
   }
-
 
 }

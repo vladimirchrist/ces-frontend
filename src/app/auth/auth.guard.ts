@@ -18,11 +18,9 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const user = this.authService.userValue;
 
-    console.log('foi')
-
     if (user && user.expiresAt) {
 
-      if (moment() < moment(user.expiresAt)) {
+      if (moment() > moment(user.expiresAt)) {
         return true;
       } else {
         this.notificationService.error('Your session has expired');

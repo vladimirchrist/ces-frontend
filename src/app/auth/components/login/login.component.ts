@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/auth/auth.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { User } from '../../user.model';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,7 @@ import { User } from '../../user.model';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm = this.fb.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required]
-  })
+  loginForm: FormGroup;
   user: User;
   isLoginFailed = false;
   errorMessage = '';
@@ -26,7 +24,16 @@ export class LoginComponent implements OnInit {
     private authService: AuthenticationService,
     private fb: FormBuilder,
     private router: Router
-  ) { }
+  ) { 
+    this.createForm();
+  }
+
+  createForm() {
+    this.loginForm = this.fb.group({
+      username: '',
+      password: '',
+    });
+  }
 
   ngOnInit() {
     this.user = this.authService.userValue;
@@ -39,15 +46,19 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.getRawValue)
     this.authService.login(this.loginForm.value).subscribe(
       data => {
+        console.log(data);
         this.isLoginFailed = false;
         this.router.navigate(['/']);
+        
       },
       err => {
         this.errorMessage = err.error.message;
         this.alertService.error(this.errorMessage);
         this.isLoginFailed = true;
       }
+      
     );
+
     /*
     this.authenticationService.authenticationService(this.username, this.password).subscribe((result) => {
       this.invalidLogin = false;
