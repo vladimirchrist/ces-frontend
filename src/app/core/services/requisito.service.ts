@@ -1,6 +1,7 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Requisito } from '../../shared/models/requisito';
 
 @Injectable({
@@ -10,7 +11,7 @@ import { Requisito } from '../../shared/models/requisito';
 
 export class RequisitoService {
 
-  private requisitoUrl: string = 'http://localhost:8080/requisitos'
+  private requisitoUrl: string = `${environment.apiUrl}/requisitos`
 
   constructor(private http: HttpClient) { }
 
