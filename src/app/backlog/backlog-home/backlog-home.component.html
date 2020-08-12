@@ -3,7 +3,7 @@
 <div class="buttons">
   <button mat-raised-button color="primary" [routerLink]="['/sprints']">Sprints</button>
 
-  <button mat-raised-button color="primary" [routerLink]="['/criarRequisito']">Novo Requisito</button>
+  <button mat-raised-button color="primary" [routerLink]="['/requisitos/novo']">Novo Requisito</button>
 </div>
 
 <div class="actions">
@@ -54,7 +54,7 @@
 
 </div>
 
-<mat-card (click)="openRequisitoDetails()" *ngFor="let requisito of requisitos">
+<mat-card (click)="openRequisitoDetails(requisito.id)"  *ngFor="let requisito of requisitos">
   <mat-card-header>
     <mat-card-title>
       {{ requisito.requisito.nome }}

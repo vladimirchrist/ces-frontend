@@ -60,8 +60,8 @@ export class BacklogHomeComponent implements OnInit {
     })
   }
 
-  openRequisitoDetails(): void {
-    this.router.navigate(['/requisito-info'])
+  openRequisitoDetails(id : number): void {
+    this.router.navigateByUrl('/requisitos/info/'+ id);
   }
 
   resetarConsulta(): void {
