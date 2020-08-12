@@ -16,7 +16,16 @@ const routes: Routes = [
       },
       {
         path: 'novo',
-        component: UsuarioFormComponent
+        children: [
+          {
+            path: '',
+            component: UsuarioFormComponent
+          },
+          {
+            path: ':id',
+            component: UsuarioFormComponent
+          }
+        ]
       }
     ]
   }

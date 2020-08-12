@@ -60,7 +60,6 @@ export class AdministradorFormComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, config)
     dialogRef.afterClosed().subscribe((opcao: boolean) => {
       if (opcao) {
-        console.log(this.administradorForm.value as Administrador)
 
         if (this.id) {
           this.administradorService.update(this.id, this.administradorForm.value as Administrador).subscribe(() => {

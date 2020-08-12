@@ -11,37 +11,35 @@
         <button mat-raised-button color="primary" [routerLink]="['/usuarios/novo']">Novo Usuário</button>
       </div>
 
-      <mat-form-field class="search">
-        <mat-label>Pesquisar</mat-label>
-        <input matInput placeholder="nome">
-      </mat-form-field>
+      <form [formGroup]="search">
+        <mat-form-field class="search">
+          <mat-label>Pesquisar</mat-label>
+          <input matInput placeholder="nome" formControlName="nome">
+        </mat-form-field>
+      </form>
     </div>
 
-    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    <mat-table [dataSource]="data" class="mat-elevation-z8" matSort matSortActive="created" matSortDisableClear
+    matSortDirection="desc">
 
       <ng-container matColumnDef="position">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef > # </mat-header-cell>
+        <mat-cell *matCellDef="let i = index"> {{(i+1) + this.paginator.pageIndex*10}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="nome">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef > Nome </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.nome}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="username">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Login </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef > Login </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="ativo">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Ativo </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.ativo}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef > Ativo </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.enabled? "Sim" : "Não"}}  </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="numProjetosCriados">
@@ -73,7 +71,7 @@
 
     </mat-table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [length]="resultsLength" [pageSize]="10"></mat-paginator>
 
   </mat-card-content>
 

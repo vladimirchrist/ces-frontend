@@ -5,12 +5,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { merge, of } from 'rxjs';
+import { catchError, debounceTime, map, startWith, switchMap } from 'rxjs/operators';
 import { AdministradorService } from 'src/app/core/services/administrador.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { ConfirmDialogComponent, DialogData } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 import { Administrador } from 'src/app/shared/models/administrador';
-import { MatTable } from '@angular/material/table';
-import { AdministradorReadDataSource } from './administrador-read-datasource';
 
 @Component({
   selector: 'app-administrador-list',
@@ -19,16 +19,16 @@ import { AdministradorReadDataSource } from './administrador-read-datasource';
 })
 export class AdministradorListComponent implements OnInit, AfterViewInit {
 
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
-  @ViewChild(MatTable, { static: false }) table: MatTable<Administrador>;
-  dataSource: AdministradorReadDataSource;
-
   displayedColumns: string[] = ['position', 'nome', 'username', 'ativo', 'acoes']
+  // exampleDatabase: ExampleHttpDatabase | null;
+  data: Administrador[] = []
 
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   config = {
     nome: "",
@@ -40,7 +40,7 @@ export class AdministradorListComponent implements OnInit, AfterViewInit {
     nome: new FormControl("")
   })
 
-  nome = ""
+  nome: string = ""
 
   constructor(private administradorService: AdministradorService,
     private dialog: MatDialog,
@@ -48,19 +48,59 @@ export class AdministradorListComponent implements OnInit, AfterViewInit {
     private notificationService: NotificationService,
     private router: Router, private titleService: Title) { }
 
-  ngOnInit() {
-    this.dataSource = new AdministradorReadDataSource(this.administradorService);
+  ngOnInit(): void {
+    this.titleService.setTitle('Administradores');
+
+    this.search.get('nome').valueChanges
+      .pipe(debounceTime(400))
+      .subscribe((val: string) => {
+        this.nome = this.search.get('nome').value
+        this.paginator.pageIndex = 0
+        this.listarAdministradores()
+      });
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+
+    this.listarAdministradores()
   }
 
+  listarAdministradores(): void {
+    // If the user changes the sort order, reset back to the first page.
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+
+
+
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          return this.administradorService.getAdministradores(
+            {
+              nome: this.nome,
+              pagina: this.paginator.pageIndex,
+              itemsPorPagina: 10
+            }
+          )
+        }),
+        map(data => {
+          // Flip flag to show that loading has finished.
+          this.isLoadingResults = false;
+          this.isRateLimitReached = false;
+          this.resultsLength = 40//data.headers.get('X-Total-Count')
+
+          return data.body as Administrador[];
+        }),
+        catchError(() => {
+          this.isLoadingResults = false;
+          this.isRateLimitReached = true;
+          return of([]);
+        })
+      ).subscribe(data => this.data = data);
+  }
 
   editar(id: number): void {
-    console.log('/administrador/novo/' + id)
     this.router.navigateByUrl('/administradores/novo/' + id);
   }
 
@@ -76,8 +116,7 @@ export class AdministradorListComponent implements OnInit, AfterViewInit {
       if (opcao) {
         this.administradorService.excluir(id).subscribe(() => {
           this.notificationService.success('Administrador excluído com sucesso')
-          //this.listarAdministradores()
-          this.dataSource.deleteAdministrador(id);
+          this.listarAdministradores()
         })
       }
     })

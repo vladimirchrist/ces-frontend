@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { LayoutComponent } from '../shared/layout/layout.component'
 import { BacklogHomeComponent } from './backlog-home/backlog-home.component'
+import { AuthGuard } from '../auth/auth.guard'
 
 const routes: Routes = [
   {
     path: 'backlog',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     component: LayoutComponent,
     children: [
       {

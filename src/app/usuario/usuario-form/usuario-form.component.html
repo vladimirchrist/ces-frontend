@@ -1,54 +1,36 @@
-<div class="title">
-  <button mat-icon-button aria-label="Voltar" [routerLink]="['/usuarios']">
-    <mat-icon>arrow_back</mat-icon> Novo Usuário
-  </button>
-</div>
+<h1>{{ editarUsuario ? 'Editar Usuario' : 'Cadastrar Usuario' }}</h1>
 <br>
-<mat-card>
-  <div class="row">
+<form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Login</mat-label>
+          <input matInput formControlName="username">
+        </mat-form-field>
+      </div>
 
-    <div class="col">
-      <mat-form-field>
-        <mat-label>Nome</mat-label>
-        <input matInput>
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <mat-label>Login</mat-label>
-        <input matInput>
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input matInput>
-      </mat-form-field>
+      <div class="col">
+        <div [hidden]="editarUsuario">
+          <mat-form-field> 
+            <mat-label>Senha</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+        </div>
+        <br>
+        <mat-checkbox formControlName="enabled">Ativo</mat-checkbox>
+      </div>
     </div>
+  </mat-card>
 
-    <div class="col">
-      <mat-form-field>
-        <mat-label>Senha</mat-label>
-        <input type="password" matInput>
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <mat-label>Confirmar senha</mat-label>
-        <input matInput>
-      </mat-form-field>
-      <br>
-      <mat-checkbox>Ativo</mat-checkbox>
-    </div>
+  <div class="actions">
+    <button mat-raised-button color="warn" [routerLink]="['/usuarios']">Cancelar</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!usuarioForm.valid&&!editarUsuario">{{ editarUsuario ? 'Editar' : 'Criar' }}</button>
   </div>
-
-  <div class="row">
-    <mat-form-field class="habilidades">
-      <mat-label>Habilidades</mat-label>
-      <textarea matInput></textarea>
-    </mat-form-field>
-  </div>
-
-</mat-card>
-
-<div class="actions">
-  <button mat-raised-button color="warn" [routerLink]="['/usuarios']">Cancelar</button>
-  <button mat-raised-button color="primary" (click)="cadastrar()">Criar</button>
-</div>
+</form>
